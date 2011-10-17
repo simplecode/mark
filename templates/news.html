@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Новости
+{% endblock %}
+
+{% block content %}
+    <DIV CLASS="opt">
+        <A href="/news/add/">Добавить</A>
+    </DIV>
+    {% for news in all_news %}
+        <DIV CLASS="n_ttl">
+            {{ news }}
+        </DIV>
+        <DIV CLASS="n_txt">
+            {{ news.n_text }}
+        </DIV>
+        <DIV CLASS="opt">
+            <A href="/news/edit/{{ news.id }}/">Изменить</A>
+            <A href="/news/del/{{ news.id }}/">Удалить</A>
+        </DIV>
+        <HR>
+    {% endfor %}
+{% endblock %}

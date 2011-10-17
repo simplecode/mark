@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% block content %}
+    <DIV ID="selMark">
+        <DIV CLASS="close">
+            <A HREF="#"><IMG SRC="/media/icons/close.png" ALIGN="absmiddle"></A>
+        </DIV>
+        <A CLASS="mark_2" MARK="2" HREF="#">2 ( не о чем )</A>
+        <A CLASS="mark_3" MARK="3" HREF="#">3 ( ладно, пойдет )</A>
+        <A CLASS="mark_4" MARK="4" HREF="#">4 ( нормально )</A>
+        <A CLASS="mark_5" MARK="5" HREF="#">5 ( круто )</A>
+        <A CLASS="mark_0" MARK="0" HREF="#">clear <IMG SRC="/media/icons/clear.png" ALIGN="absmiddle"></A>
+    </DIV>
+
+    <TABLE ID="mark">
+    <TR>
+        <TH>#</TH>
+        <TH CLASS="name">
+            ФИО &nbsp;
+            <A ID="add_stud" HREF="#">
+                <IMG SRC="/media/icons/add.png" ALIGN="absmiddle">
+            </A>
+            <DIV ID="newStud">
+                <DIV CLASS="close">
+                    <A HREF="#"><IMG SRC="/media/icons/close.png" ALIGN="absmiddle"></A>
+                </DIV>
+                <INPUT TYPE="text" NAME="l_name"> Фамилия<BR>
+                <INPUT TYPE="text" NAME="f_name"> Имя<BR>
+                <INPUT TYPE="text" NAME="s_name"> Отчество<BR>
+                <A CLASS="add" HREF="#">
+                    <IMG SRC="/media/icons/add.png" ALIGN="absmiddle">
+                </A>
+            </DIV>
+        </TH>
+        {% for h in labs %}
+            <TH CLASS="mark">{{ h.pos }}</TH>
+        {% endfor %}
+    </TR>
+    {% for id_stud, mark in mrk.items %}
+        <TR>
+            <TD>{{ forloop.counter }}</TD>
+            <TD CLASS="name" ID="stud_{{ id_stud }}">
+                {{ mark.name }}
+                <A CLASS="del" HREF='#'>
+                    <IMG SRC="/media/icons/delete.png" ALIGN="absmiddle">
+                </A>
+            </TD>
+            {% for l, m in mark.labs.items %}
+                <TD CLASS="mark" ID="{{ id_stud }}_{{ l }}" S="{{ id_stud }}" L="{{ l }}">
+                    {% if m %}
+                        {{ m }}
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                </TD>
+            {% endfor %}
+        </TR>
+    {% endfor %}
+    </TABLE>
+    
+    <TABLE ID="labs">
+    <TR>
+        <TH>#</TH>
+        <TH CLASS="name">Лабораторная работа</TH>
+    </TR>
+    {% for l in labs %}
+        <TR ID="{{ l.pos }}">
+            <TD>{{ l.pos }}</TD>
+            <TD CLASS="name">{{ l.name }}</TD>
+        </TR>
+    {% endfor %}
+    </TABLE>
+    
+
+{% endblock %}

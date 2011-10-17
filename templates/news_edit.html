@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Редактирование новости
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+    <FORM METHOD="POST" ACTION="/news/edit/{{ nw.id }}">
+        Заголовок<BR>
+        <INPUT TYPE="text" NAME="ttl" VALUE="{{ nw.n_title }}">
+        <BR>
+        Текст<BR>
+        <TEXTAREA NAME="txt">{{ nw.n_text }}</TEXTAREA>
+        <BR>
+        <INPUT TYPE="submit">
+    </FORM>
+{% endblock %}

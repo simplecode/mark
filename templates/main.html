@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block content %}
+    <TABLE>
+    {% for key, value in mrk.items %}
+        <TR>
+            <TD>{{ key }} - {{ value }}</TD>
+        </TR>
+    {% endfor %}
+    </TABLE>
+{% endblock %}

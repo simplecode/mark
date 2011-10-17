@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Добавление новости
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+    <FORM METHOD="POST" ACTION="/news/add/">
+        Заголовок<BR>
+        <INPUT TYPE="text" NAME="ttl">
+        <BR>
+        Текст<BR>
+        <TEXTAREA NAME="txt"></TEXTAREA>
+        <BR>
+        <INPUT TYPE="submit">
+    </FORM>
+{% endblock %}

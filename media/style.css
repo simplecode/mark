@@ -1,0 +1,202 @@
+body {
+    background: #FFF;
+}
+
+#menu {
+    text-align: center;
+}
+
+#menu a {
+    color: #080;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#mark {
+    border-collapse: collapse;
+    border: solid #999 1px;
+    float: left;
+    margin: 0px;
+}
+
+#mark th {
+    padding: 4px;
+    border: solid #999 1px;
+    background: #FF9;
+}
+
+#mark td {
+    padding: 4px;
+    border: solid #999 1px;
+    text-align: center;
+}
+
+#mark .name {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#mark .mark {
+    min-width: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#mark .del {
+}
+
+#newStud {
+    position: absolute;
+    padding: 5px;
+    top: 0px;
+    left: 0px;
+    padding: 5px;
+    background: #CFC;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border: solid 1px #999;
+    opacity: 1;
+    z-index: 2;
+    font-weight: normal;
+    color: #555;
+    font-size: 90%;
+}
+
+#newStud .add {
+    display: block;
+    text-align: center;
+    margin: 6px 0px;
+}
+
+#newStud .close {
+    text-align: right;
+}
+
+#newStud input {
+    border: solid 1px #999;
+}
+
+#labs {
+    border-collapse: collapse;
+    border: solid #999 1px;
+    float: right;
+    margin: 0px 0px 0px 20px;
+}
+
+#labs th {
+    padding: 4px;
+    border: solid #999 1px;
+    background: #FF9;
+}
+
+#labs td {
+    padding: 4px;
+    border: solid #999 1px;
+    text-align: center;
+}
+
+#labs .name {
+    text-align: left;
+}
+
+#selMark {
+    position: absolute;
+    padding: 5px;
+    top: 10px;
+    left: 10px;
+    background: #FF9;
+    
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 0px;
+    -moz-border-radius-bottomleft: 10px;
+    -webkit-border-radius: 0px 10px 0px 10px;
+    border-radius: 0px 10px 0px 10px;
+    
+    -webkit-box-shadow: 5px 5px 9px 1px rgba(9, 9, 9, 0.4);
+    -moz-box-shadow: 5px 5px 9px 1px rgba(9, 9, 9, 0.4);
+    box-shadow: 5px 5px 9px 1px rgba(9, 9, 9, 0.4);
+    
+    border: solid 1px #999;
+    opacity: 1;
+    z-index: 2;
+}
+
+#selMark a {
+    display: block;
+    margin: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #555;
+    font-size: 90%;
+}
+
+#selMark a img {
+    border-style: none;
+}
+
+#selMark a:hover {
+    color: #000;
+}
+
+#selMark a.mark_2:hover {
+    color: #000;
+}
+
+#selMark a.mark_3:hover {
+    color: #F00;
+}
+
+#selMark a.mark_4:hover {
+    color: #090;
+}
+
+#selMark a.mark_5:hover {
+    color: #00F;
+}
+
+#selMark .close {
+    text-align: right;
+}
+
+#selMark .close img {
+    border-style: none;
+}
+
+a {
+    border-style: none;
+}
+
+.n_ttl {
+    font-size: 80%;
+    color: #666;
+}
+
+.n_txt {
+    color: #009;
+}
+
+.opt {
+    text-align: right;
+}
+
+.opt a {
+    font-size: 70%;
+    color: #555;
+    text-decoration: none;
+}
+
+#footer {
+    position: fixed;
+    font-size: 80%;
+    color: #555;
+    bottom: 0px;
+    /*height: 30px;*/
+    width: 100%;
+    text-align: center;
+    /*border-top: solid 1px #555;*/
+}
+
