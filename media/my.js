@@ -6,6 +6,16 @@ $(function() {
     $('#newStud').hide();
     $('.del').css({'opacity': '0.2'});
 
+    $('#mark td.mark').each(function() {
+        var VRegExp = '/\s/g';
+        var m = $(this).html();
+        m = m.replace(VRegExp, '');
+        alert(">" + m + "<");
+        if (m == '5') {
+            $(this).css({'color': '#00F'});
+        }
+    });
+
     // клик по ячейке с оценкой
     $('td.mark').click(function() {
         
@@ -53,7 +63,8 @@ $(function() {
             function(data) {
                 $(id).html(data);
                 $('#selMark').hide();
-            });
+            }
+        );
     });
 
     $('#mark td.mark').mousemove(function() {
@@ -73,26 +84,38 @@ $(function() {
         $(this).css({'opacity': '0.2'});
     });
 
+    $('.del').click(function() {
+        var stud_id = $(this).attr('STUD_ID');
+        var x = '#st_' + stud_id;
+        $.get(
+            "/students/del/" + stud_id + "/",
+            {},
+            function(data) {
+                if (data == "OK") {
+                    $(x).remove();
+                }
+            }
+        );
+    });
+
     $('#add_stud').click(function() {
         $('#newStud').show();
         $(this).offset(function(i, v) {
             $('#newStud').animate({'top': v.top + 20, 'left': v.left + 20}, 1);
         });
     });
-    
+
     // добавление студента
     $('#newStud .add').click(function() {
         var l_name = $('#newStud input[name=l_name]').attr('value');
         var f_name = $('#newStud input[name=f_name]').attr('value');
         var s_name = $('#newStud input[name=s_name]').attr('value');
-        alert(f_name);
         $.post(
             "/students/add/",
-            {'f_name': f_name, 'l_name': l_name, 's_name': s_name},
-            function(data) {
-                $('table').html(data);
-                $('#newStud').hide();
-            }
+            {'f_name': f_name, 'l_name': l_name, 's_name': s_name}
+            /*function(data) {
+                //$('html').html(data);
+            }*/
         );
     });
 

@@ -1,5 +1,17 @@
 body {
     background: #FFF;
+    margin: 0px;
+    padding: 0px;
+}
+
+#hat {
+    margin: 0px;
+    padding: 0px;
+    background: #555;
+    color: #FFD;
+    height: 60px;
+    border-top: solid 1px #999;
+    text-align: center;
 }
 
 #menu {
@@ -11,6 +23,10 @@ body {
     margin: 5px;
     text-align: center;
     text-decoration: none;
+}
+
+#main {
+    margin: 10px;
 }
 
 #mark {
@@ -190,13 +206,15 @@ a {
 }
 
 #footer {
-    position: fixed;
     font-size: 80%;
-    color: #555;
+    background: #333;
+    padding-top: 20px;
+    margin-top: 10px;
+    color: #FFD;
     bottom: 0px;
-    /*height: 30px;*/
+    height: 50px;
     width: 100%;
     text-align: center;
-    /*border-top: solid 1px #555;*/
+    border-top: solid 1px #999;
 }
 

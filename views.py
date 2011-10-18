@@ -23,6 +23,8 @@ def show(request):
     return render_to_response('show.html', {'mrk': mrk, 'labs': labs})
 
 def put(request):
+    ''' Добавление оценки '''
+
     if request.method == 'POST':
         stud = Students.objects.get(id=request.POST['stud'])
         lab = Labs.objects.get(id=request.POST['lab'])
@@ -38,7 +40,30 @@ def put(request):
         return HttpResponse("")
 
 def stud_add(request):
+    ''' Добавление студента '''
+
     if request.method == 'POST':
         stud = Students(l_name=request.POST['l_name'], f_name=request.POST['f_name'], s_name=request.POST['s_name'])
         stud.save()
-    return HttpResponse(stud)
+    return HttpResponseRedirect('/')
+    
+def stud_del(request, stud):
+    ''' Удаление студента '''
+
+    st = Students.objects.get(id=stud)
+    st.delete()
+    return HttpResponse("OK")
+
+
+
+
+
+
+
+
+
+
+
+
+
+

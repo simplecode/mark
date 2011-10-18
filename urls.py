@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     (r'^$', show),
     (r'^put/$', put),
     (r'^students/add/$', stud_add),
+    (r'^students/del/(\d+)/$', stud_del),
 )
 
 # DEBUG ONLY

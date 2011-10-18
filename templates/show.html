@@ -36,11 +36,11 @@
         {% endfor %}
     </TR>
     {% for id_stud, mark in mrk.items %}
-        <TR>
+        <TR ID="st_{{ id_stud }}">
             <TD>{{ forloop.counter }}</TD>
             <TD CLASS="name" ID="stud_{{ id_stud }}">
                 {{ mark.name }}
-                <A CLASS="del" HREF='#'>
+                <A CLASS="del" STUD_ID="{{ id_stud }}" HREF='#'>
                     <IMG SRC="/media/icons/delete.png" ALIGN="absmiddle">
                 </A>
             </TD>

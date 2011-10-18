@@ -20,7 +20,7 @@ class Labs(models.Model):
         db_table = u'labs'
     def __unicode__(self):
         return u'%s' % self.name
-    
+
 
 class Mark(models.Model):
     mark = models.IntegerField(null=True, blank=True)
