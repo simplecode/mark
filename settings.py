@@ -20,7 +20,8 @@ DATABASES = {
     }
 }
 
-
+VASYA = "Сдесь был ВАСЯ"
+ 
 TIME_ZONE = 'America/Chicago'
 
 LANGUAGE_CODE = 'en-us'
