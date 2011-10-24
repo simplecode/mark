@@ -10,9 +10,9 @@ $(function() {
         var VRegExp = '/\s/g';
         var m = $(this).html();
         m = m.replace(VRegExp, '');
-        alert(">" + m + "<");
+        //alert(">" + m + "<");
         if (m == '5') {
-            $(this).css({'color': '#00F'});
+            $(this).css({'color': 'red'});
         }
     });
 
@@ -85,7 +85,7 @@ $(function() {
     });
 
     $('.del').click(function() {
-        var stud_id = $(this).attr('STUD_ID');
+        var stud_id = $(this).attr('stud_id');
         var x = '#st_' + stud_id;
         $.get(
             "/students/del/" + stud_id + "/",
@@ -112,11 +112,12 @@ $(function() {
         var s_name = $('#newStud input[name=s_name]').attr('value');
         $.post(
             "/students/add/",
-            {'f_name': f_name, 'l_name': l_name, 's_name': s_name}
-            /*function(data) {
-                //$('html').html(data);
-            }*/
-        );
+            {'f_name': f_name, 'l_name': l_name, 's_name': s_name},
+            function(data) {
+                if (data == "OK") {
+                    //$('tr:last').append("<tr><td colspan='10'></td></tr>");
+                }
+            });
     });
 
 });

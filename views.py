@@ -7,8 +7,8 @@ from datetime import datetime
 def show(request):
     ''' Список студентов с оценками '''
 
+    students = Students.objects.filter().order_by('pk')
     stud = Students.objects.all()
-    print stud
     labs = Labs.objects.all()
     lb = dict()
     for l in labs:
@@ -20,7 +20,7 @@ def show(request):
     m = Mark.objects.all()
     for i in m:
         mrk[i.student.id]['labs'][i.lab.id] = i.mark
-    return render_to_response('show.html', {'mrk': mrk, 'labs': labs})
+    return render_to_response('show.html',locals())
 
 def put(request):
     ''' Добавление оценки '''
@@ -32,7 +32,8 @@ def put(request):
         m = Mark.objects.filter(student=stud, lab=lab)
         m.delete()
         if mark != "0":
-            m = Mark.objects.create(mark=mark, student=stud, lab=lab, mark_date=datetime.now())
+            m = Mark.objects.create(mark=mark, student=stud, lab=lab)
+            print m
             return HttpResponse(m.mark)
         else:
             return HttpResponse("")
@@ -43,15 +44,13 @@ def stud_add(request):
     ''' Добавление студента '''
 
     if request.method == 'POST':
-        stud = Students(l_name=request.POST['l_name'], f_name=request.POST['f_name'], s_name=request.POST['s_name'])
-        stud.save()
-    return HttpResponseRedirect('/')
+        Students(l_name=request.POST['l_name'], f_name=request.POST['f_name'], s_name=request.POST['s_name']).save()
+    return HttpResponse("OK")
     
 def stud_del(request, stud):
     ''' Удаление студента '''
 
-    st = Students.objects.get(id=stud)
-    st.delete()
+    Students.objects.get(id=stud).delete()
     return HttpResponse("OK")
 
 

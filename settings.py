@@ -2,26 +2,26 @@
 import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+PROJECT_DIR = os.path.join(os.path.dirname(__file__)) + '/'
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
+INTERNAL_IPS = ('127.0.0.1',)
+
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'journal',
-        'USER': 'root',
-        'PASSWORD': 'dpk',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': PROJECT_DIR + 'journal.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
-VASYA = "Сдесь был ВАСЯ"
- 
 TIME_ZONE = 'America/Chicago'
 
 LANGUAGE_CODE = 'en-us'
@@ -32,7 +32,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media'),
+MEDIA_ROOT = PROJECT_DIR + 'media'
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/admin_media/'
 
@@ -50,14 +50,34 @@ MIDDLEWARE_CLASSES = (
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'mark.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates'),
+    PROJECT_DIR + 'templates',
 )
 
 INSTALLED_APPS = (
     'django.contrib.sessions',
+    'mark',
+    #utility
+    'debug_toolbar',
+)
+
+
+
+# DEBUG_TOOLBAR
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
 )
