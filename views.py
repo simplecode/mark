@@ -8,18 +8,7 @@ def show(request):
     ''' Список студентов с оценками '''
 
     students = Students.objects.filter().order_by('pk')
-    stud = Students.objects.all()
     labs = Labs.objects.all()
-    lb = dict()
-    for l in labs:
-        lb[l.id] = ""
-    mrk = dict()
-    for s in stud:
-        mrk[s.id] = {'name' : s, 'labs' : lb.copy()}
-    
-    m = Mark.objects.all()
-    for i in m:
-        mrk[i.student.id]['labs'][i.lab.id] = i.mark
     return render_to_response('show.html',locals())
 
 def put(request):
