@@ -39,7 +39,7 @@
 
                     {% for lab in labs %}
                         <td class="mark" id="{{ student.id }}_{{ lab.id }}" s="{{ student.id }}" l="{{ lab.id }}">
-                        {% for mark in lab.assesments.all %}
+                        {% for mark in lab.assessments.all %}
                             {% if lab.id == mark.lab_id and student.id == mark.student_id %}
                                 {{ mark.mark }}
                             {% endif %}

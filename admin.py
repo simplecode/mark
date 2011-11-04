@@ -1,5 +1,5 @@
 from django.contrib.admin import site, ModelAdmin
-from models import Labs, Students, Assesment
+from models import Labs, Students, Assessment
 
 class AdminLabs(ModelAdmin):
         list_display = ('name', 'pos',)
@@ -7,9 +7,9 @@ class AdminLabs(ModelAdmin):
 class AdminStudents(ModelAdmin):
         list_display = ('f_name', 'l_name', 's_name')
 
-class AdminAssesment(ModelAdmin):
+class AdminAssessment(ModelAdmin):
         list_display = ('student', 'lab', 'mark', 'date_pub')
 
 site.register(Labs, AdminLabs)
 site.register(Students, AdminStudents)
-site.register(Assesment, AdminAssesment)
+site.register(Assessment, AdminAssessment)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
-from mark.models import Students, Assesment, Labs
+from mark.models import Students, Assessment, Labs
 
 def show(request):
     ''' Список студентов с оценками '''
@@ -18,11 +18,11 @@ def put(request):
         lab = Labs.objects.get(id=request.POST['lab'])
         mark = request.POST['mark']
         if mark != "0":
-            mark = Assesment(mark=mark, student=stud, lab=lab)
+            mark = Assessment(mark=mark, student=stud, lab=lab)
             mark.save()
             return HttpResponse(mark.mark)
         else:
-            Assesment.objects.filter(student=stud, lab=lab).delete()
+            Assessment.objects.filter(student=stud, lab=lab).delete()
             return HttpResponse("")
     else:
         return HttpResponse("")

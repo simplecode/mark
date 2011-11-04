@@ -28,9 +28,9 @@ class Labs(models.Model):
         return u'%s' % self.name
 
 
-class Assesment(models.Model):
-    student  = models.ForeignKey(Students, blank=True, related_name='assesments')
-    lab      = models.ForeignKey(Labs, blank=True, related_name='assesments')
+class Assessment(models.Model):
+    student  = models.ForeignKey(Students, blank=True, related_name='assessments')
+    lab      = models.ForeignKey(Labs, blank=True, related_name='assessments')
     mark     = models.IntegerField(null=True, blank=True)
     date_pub = models.DateTimeField(auto_now_add=True)
 
