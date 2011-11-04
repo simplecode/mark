@@ -11,45 +11,6 @@
         <A CLASS="mark_0" MARK="0" HREF="#">clear <IMG SRC="/media/icons/clear.png" ALIGN="absmiddle"></A>
     </DIV>
 
-    <table id="mark">
-        <tr>
-            <th>#</th>
-            <th class = "name">
-                ФИО
-                <a id="add_stud" href="#">
-                    <img src="/media/icons/add.png" style="padding-left: 25px;"/>
-                </a>
-
-                <div id="newStud">
-                    <div class="close">
-                        <a href="#"><img src="/media/icons/close.png" align="absmiddle"></a>
-                    </div>
-                    <INPUT TYPE="text" NAME="l_name"> Фамилия<BR>
-                    <INPUT TYPE="text" NAME="f_name"> Имя<BR>
-                    <INPUT TYPE="text" NAME="s_name"> Отчество<BR>
-                    <A CLASS="add" HREF="#">
-                        <IMG SRC="/media/icons/add.png" ALIGN="absmiddle">
-                    </A>
-                </DIV>
-
-            </th>
-            {% for lab in labs %}
-                <th class="mark">{{ lab.pk }}</th>
-            {% endfor %}
-        </tr>
-        {% for student in students %}
-            <tr id = "st_{{ student.pk }}">
-                <td>{{ student.pk }}</td>
-                <td class="name" id="stud_{{ id_stud }}">{{ student }} <a class="del" stud_id="{{ student.id }}" href='#'><img src="/media/icons/delete.png"></a></td>
-
-                {% for lab in labs %}
-                    <td class="mark" id="{{ student.id }}_{{ lab.id }}" s="{{ student.id }}" l="{{ lab.id }}">{% if lab.get_mark in student.get_marks %}{{ lab.get_mark }}{% endif %}</td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-
-
     <table id="labs">
     <tr>
         <th>#</th>
@@ -62,5 +23,36 @@
         </TR>
     {% endfor %}
     </table>
+
+
+    <table id = "mark">
+        <tr>
+            <th>ФИО</th>
+            {% for lab in labs %}
+                <th class="mark">{{ forloop.counter }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for student in students %}
+            <tr id = "st_{{ student.pk }}">
+                <td class="name" id="stud_{{ student.id }}">{{ student }}</td>
+
+                    {% for lab in labs %}
+                        <td class="mark" id="{{ student.id }}_{{ lab.id }}" s="{{ student.id }}" l="{{ lab.id }}">
+                        {% for mark in lab.assesments.all %}
+                            {% if lab.id == mark.lab_id and student.id == mark.student_id %}
+                                {{ mark.mark }}
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                    {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
 
 {% endblock %}

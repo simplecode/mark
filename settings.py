@@ -22,9 +22,9 @@ DATABASES = {
     }
 }
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Moscow'
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'RU-ru'
 
 SITE_ID = 1
 
@@ -62,6 +62,9 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'django.contrib.sessions',
     'mark',
+    'django.contrib.admin',
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
     #utility
     'debug_toolbar',
 )

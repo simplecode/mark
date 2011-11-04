@@ -17,7 +17,9 @@ body {
 #menu {
     text-align: center;
 }
-
+th {
+    min-width: 50px;
+}
 #menu a {
     color: #080;
     margin: 5px;
@@ -55,7 +57,6 @@ body {
 }
 
 #mark .mark {
-    min-width: 20px;
     text-align: center;
     cursor: pointer;
 }
