@@ -16,10 +16,10 @@
         <th>#</th>
         <th class="name">Лабораторная работа</th>
     </tr>
-    {% for l in labs %}
-        <tr id="{{ l.pos }}">
-            <td>{{ l.pos }}</td>
-            <td class="name">{{ l.name }}</td>
+    {% for lab in labs %}
+        <tr id="{{ lab.id }}">
+            <td>{{ lab.id }}</td>
+            <td class="name">{{ lab.name }}</td>
         </TR>
     {% endfor %}
     </table>
@@ -27,7 +27,19 @@
 
     <table id = "mark">
         <tr>
-            <th>ФИО</th>
+            <th>
+                ФИО
+                <a id="add_stud" href="#"><img src="/media/icons/add.png" style="padding-left: 25px;"/></a>
+                <div id="newStud">
+                    <div class="close">
+                        <a href="#"><img src="/media/icons/close.png" align="absmiddle"></a>
+                    </div>
+                    {{ forms.as_p }}
+                    <A CLASS="add" HREF="#">
+                        <IMG SRC="/media/icons/add.png" ALIGN="absmiddle">
+                    </A>
+                </div>
+            </th>
             {% for lab in labs %}
                 <th class="mark">{{ forloop.counter }}</th>
             {% endfor %}

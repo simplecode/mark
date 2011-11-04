@@ -2,7 +2,7 @@ from django.contrib.admin import site, ModelAdmin
 from models import Labs, Students, Assessment
 
 class AdminLabs(ModelAdmin):
-        list_display = ('name', 'pos',)
+        list_display = ('name',)
 
 class AdminStudents(ModelAdmin):
         list_display = ('f_name', 'l_name', 's_name')

@@ -56,7 +56,7 @@ $(function() {
     
     // клик по оценке
     $('#selMark a').click(function() {
-        id = '#' + s + '_' + l;
+        var id = '#' + s + '_' + l;
         $.post(
             "/put/",
             {'stud': s, 'lab': l, 'mark': $(this).attr('mark')},
@@ -112,10 +112,11 @@ $(function() {
         var s_name = $('#newStud input[name=s_name]').attr('value');
         $.post(
             "/students/add/",
-            {'f_name': f_name, 'l_name': l_name, 's_name': s_name}
-            /*function(data) {
-                //$('html').html(data);
-            }*/
+            {'f_name': f_name, 'l_name': l_name, 's_name': s_name},
+            function(data) {
+                $('#mark tr:last').after(data);
+                $('#newStud').hide();
+            }
         );
     });
 

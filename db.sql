@@ -37,11 +37,11 @@ CREATE TABLE `mark` (
 
 
 INSERT INTO `students` VALUES
-(null, 'Безручкин', 'Евгений', 'Геннадьевич'),
-(null, 'Букин', 'Максим', 'Николаевич'),
-(null, 'Верещагина', 'Александра', 'Владимировна'),
-(null, 'Демидова', 'Анастасия', 'Александровна'),
-(null, 'Егоров', 'Константин', 'Сергеевич');
+INSERT INTO `students` VALUES(null, 'Безручкин', 'Евгений', 'Геннадьевич');
+INSERT INTO `students` VALUES(null, 'Букин', 'Максим', 'Николаевич');
+INSERT INTO `students` VALUES(null, 'Верещагина', 'Александра', 'Владимировна');
+INSERT INTO `students` VALUES(null, 'Демидова', 'Анастасия', 'Александровна');
+INSERT INTO `students` VALUES(null, 'Егоров', 'Константин', 'Сергеевич');
 
 INSERT INTO `labs` VALUES
 (null, 'ЛР1. Создание и удаление таблиц и БД', 1),

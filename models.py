@@ -2,9 +2,9 @@
 from django.db import models, connection
 
 class Students(models.Model):
-    f_name = models.CharField(max_length=100)
-    l_name = models.CharField(max_length=100)
-    s_name = models.CharField(max_length=100)
+    f_name = models.CharField(max_length=100, null = False, blank = False, verbose_name='Фамилия')
+    l_name = models.CharField(max_length=100, null = False, blank = False, verbose_name='Имя')
+    s_name = models.CharField(max_length=100, null = False, blank = False, verbose_name='Отчество')
 
     class Meta:
         db_table = u'students'
@@ -16,8 +16,7 @@ class Students(models.Model):
         return u'%s %s %s' % (self.l_name, self.f_name, self.s_name)
 
 class Labs(models.Model):
-    name    = models.CharField(max_length=255)
-    pos     = models.IntegerField()
+    name    = models.CharField(max_length=255, null = False, blank = False)
 
     class Meta:
         db_table = u'labs'
