@@ -1,56 +1,42 @@
 {% extends "index.html" %}
 {% block content %}
-    <DIV ID="selMark">
-        <DIV CLASS="close">
-            <A HREF="#"><IMG SRC="/media/icons/close.png" ALIGN="absmiddle"></A>
-        </DIV>
-        <A CLASS="mark_2" MARK="2" HREF="#">2 ( не о чем )</A>
-        <A CLASS="mark_3" MARK="3" HREF="#">3 ( ладно, пойдет )</A>
-        <A CLASS="mark_4" MARK="4" HREF="#">4 ( нормально )</A>
-        <A CLASS="mark_5" MARK="5" HREF="#">5 ( круто )</A>
-        <A CLASS="mark_0" MARK="0" HREF="#">clear <IMG SRC="/media/icons/clear.png" ALIGN="absmiddle"></A>
-    </DIV>
-
-    <table id="labs">
-    <tr>
-        <th>#</th>
-        <th class="name">Лабораторная работа</th>
-    </tr>
-    {% for lab in labs %}
-        <tr id="{{ lab.id }}">
-            <td>{{ lab.id }}</td>
-            <td class="name">{{ lab.name }}</td>
-        </TR>
-    {% endfor %}
-    </table>
+    <div id="selMark">
+        <div class="close">
+            <a href="#"><img src="/media/icons/close.png" align="absmiddle"></a>
+        </div>
+        <a class="mark_2" mark="2" href="#">2 (не о чем)</a>
+        <a class="mark_3" mark="3" href="#">3 (так се)</a>
+        <a class="mark_4" mark="4" href="#">4 (нормально)</a>
+        <a class="mark_5" mark="5" href="#">5 (круто)</a>
+        <a class="mark_0" mark="0" href="#">clear <img src="/media/icons/clear.png" align="absmiddle"></a>
+    </div>
 
 
     <table id = "mark">
         <tr>
-            <th>
+            <th class="notHide">
                 ФИО
                 <a id="add_stud" href="#"><img src="/media/icons/add.png" style="padding-left: 25px;"/></a>
                 <div id="newStud">
                     <div class="close">
                         <a href="#"><img src="/media/icons/close.png" align="absmiddle"></a>
                     </div>
-                    {{ forms.as_p }}
-                    <A CLASS="add" HREF="#">
-                        <IMG SRC="/media/icons/add.png" ALIGN="absmiddle">
-                    </A>
+                    {{ form_student.as_p }}
+                    <a class="add_student" href="#">
+                        <img src="/media/icons/add.png" align="absmiddle">
+                    </a>
                 </div>
             </th>
             {% for lab in labs %}
-                <th class="mark">{{ forloop.counter }}</th>
+                <th class="mark" l="{{ lab.id }}">{{ forloop.counter }}</th>
             {% endfor %}
         </tr>
 
         {% for student in students %}
             <tr id = "st_{{ student.pk }}">
-                <td class="name" id="stud_{{ student.id }}">{{ student }}</td>
-
+                <td class="name notHide" id="stud_{{ student.id }}">{{ student }}</td>
                     {% for lab in labs %}
-                        <td class="mark" id="{{ student.id }}_{{ lab.id }}" s="{{ student.id }}" l="{{ lab.id }}">
+                        <td class="mark lab_{{ lab.id }}" id="{{ student.id }}_{{ lab.id }}" s="{{ student.id }}" l="{{ lab.id }}">
                         {% for mark in lab.assessments.all %}
                             {% if lab.id == mark.lab_id and student.id == mark.student_id %}
                                 {{ mark.mark }}
@@ -63,6 +49,31 @@
     </table>
 
 
+    <table id="labs">
+    <tr>
+        <th>#</th>
+        <th class="name">
+            Лабораторная работа
+            <a id="add" href="#"><img src="/media/icons/add.png" style="padding-left: 25px;"/></a>
+            <div>
+                <div class="close">
+                    <a href="#"><img src="/media/icons/close.png" align="absmiddle"></a>
+                </div>
+                {{ form_lab.as_p }}
+                <a class="add_lab" href="#">
+                    <img src="/media/icons/add.png" align="absmiddle">
+                </a>
+            </div>
+
+        </th>
+    </tr>
+    {% for lab in labs %}
+        <tr id="{{ lab.id }}">
+            <td>{{ lab.id }}</td>
+            <td class="lab" l="{{ lab.id }}">{{ lab.name }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 
 
 

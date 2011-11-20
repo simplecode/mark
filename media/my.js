@@ -7,15 +7,41 @@ $(function() {
     $('.del').css({'opacity': '0.2'});
 
     $('#mark td.mark').each(function() {
-        var VRegExp = '/\s/g';
-        var m = $(this).html();
-        m = m.replace(VRegExp, '');
-        //alert(">" + m + "<");
+        var m = $.trim($(this).html());
+
         if (m == '5') {
             $(this).css({'color': 'red'});
         }
+        if (m == '4') {
+            $(this).css({'color': 'green'});
+        }
+        if (m == '3') {
+            $(this).css({'color': 'blue'});
+        }
+        if (m == '2') {
+            $(this).css({'color': 'black'});
+        }
     });
+    $('td.mark').hover(
+        function(){
+            s = $(this).attr('s');
+            l = $(this).attr('l');
 
+            // подсветка лабораторной работы
+            labElem = '#' + l;
+            $('#labs tr').css({'background-color': '#FFF'});
+            $(labElem).css({'background-color': '#9CF'});
+            // подсветка фамилии студента
+            studElem = '#stud_' + s;
+            $('#mark td.name').css({'background-color': '#FFF'});
+            $(studElem).css({'background-color': '#9CF'});
+        },
+        function(){
+            $('#labs tr').css({'background-color': '#FFF'})
+            $('#mark td.name').css({'background-color': '#FFF'});
+
+        }
+    )
     // клик по ячейке с оценкой
     $('td.mark').click(function() {
         
@@ -106,7 +132,7 @@ $(function() {
     });
 
     // добавление студента
-    $('#newStud .add').click(function() {
+    $('#newStud .add_student').click(function() {
         var l_name = $('#newStud input[name=l_name]').attr('value');
         var f_name = $('#newStud input[name=f_name]').attr('value');
         var s_name = $('#newStud input[name=s_name]').attr('value');
@@ -120,4 +146,34 @@ $(function() {
         );
     });
 
+    // добавление лабы
+    $('.add_lab').click(function() {
+        var name = $('input[name=name]').attr('value');
+        alert(name)
+        $.post(
+            "/lab/add/",
+            {'name': name},
+            function(data) {
+                
+            }
+        );
+    });
+
+
+
+
+    // Лабы
+
+    $('#labs td.lab').click(function(){
+        var lab = $(this).attr('l');
+        $('#mark td').show()
+        $('#mark th').show()
+        $('#mark td[l!='+ lab +']:not(.notHide)').hide();
+        $('#mark th[l!='+ lab +']:not(.notHide)').hide();
+    })
+
+    $('.labs').click(function(){
+        $('#mark th').show();
+        $('#mark td').show();
+    })
 });

@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
+from forms import LabForm
 from mark.models import Students, Assessment, Labs
 from mark.forms import StudentForm
 
 def show(request):
     ''' Список студентов с оценками '''
     
-    forms = StudentForm(label_suffix='')
+    form_student = StudentForm(label_suffix='')
+    form_lab = LabForm(label_suffix='')
     students = Students.objects.filter().order_by('pk')
     labs = Labs.objects.all()
     return render_to_response('show.html',locals())
@@ -19,6 +21,7 @@ def put(request):
         stud = Students.objects.get(id=request.POST['stud'])
         lab = Labs.objects.get(id=request.POST['lab'])
         mark = request.POST['mark']
+        Assessment.objects.filter(student=stud, lab=lab).delete()
         if mark != "0":
             mark = Assessment(mark=mark, student=stud, lab=lab)
             mark.save()
@@ -29,7 +32,7 @@ def put(request):
     else:
         return HttpResponse("")
 
-def stud_add(request):
+def add_student(request):
     ''' Добавление студента '''
 
     if request.method == 'POST':
@@ -48,13 +51,24 @@ def stud_add(request):
 
 
 
-def stud_del(request, stud):
+def del_student(request, stud):
     ''' Удаление студента '''
 
     Students.objects.get(id=stud).delete()
     return HttpResponse("OK")
 
-
+def add_lab(request):
+    if request.method == 'POST':
+        form = LabForm(request.POST)
+        if form.is_valid():
+            form.save()
+#            data = form.cleaned_data
+#            lab = Students.objects.filter(f_name=data['name']).order_by('-id')[0]
+            return HttpResponse('ok')
+        else:
+            return HttpResponse(form)
+    else:
+        return HttpResponse('aaa')
 
 
 

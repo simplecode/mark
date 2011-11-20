@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.models import User
 from django.db import models, connection
 
 class Students(models.Model):
@@ -8,7 +9,7 @@ class Students(models.Model):
 
     class Meta:
         db_table = u'students'
-        ordering = ['l_name', 'f_name', 's_name']
+        ordering = ['f_name', 'l_name', 's_name']
         verbose_name = ('студента')
         verbose_name_plural = ('студенты')
 
@@ -16,7 +17,7 @@ class Students(models.Model):
         return u'%s %s %s' % (self.l_name, self.f_name, self.s_name)
 
 class Labs(models.Model):
-    name    = models.CharField(max_length=255, null = False, blank = False)
+    name    = models.CharField("Название", max_length=255, null = False, blank = False)
 
     class Meta:
         db_table = u'labs'
@@ -41,3 +42,13 @@ class Assessment(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.mark
+
+
+class Teacher(models.Model):
+    user = models.OneToOneField(User)
+    teacher = models.CharField("Учитель", max_length=200)
+
+class Student(models.Model):
+    user = models.OneToOneField(User)
+    id_card = models.IntegerField("Студенческий билет")
+

@@ -1,17 +1,17 @@
 from django.conf.urls.defaults import *
-from mark.views import *
 from django.contrib import admin
 import os
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    (r'^$', show),
-    (r'^put/$', put),
-    (r'^students/add/$', stud_add),
-    (r'^students/del/(\d+)/$', stud_del),
-    (r'^admin/', include(admin.site.urls)),
+urlpatterns = patterns('mark.views',
+    url(r'^$', 'show'),
+    url(r'^put/$', 'put'),
+    url(r'^lab/add/$', 'add_lab', name='add_lab'),
+    url(r'^student/add/$', 'add_student', name='add_student'),
+    url(r'^student/del/(\d+)/$', 'del_student', name='del_student'),
 )
+(r'^admin/', include(admin.site.urls)),
 
 # DEBUG ONLY
 urlpatterns += patterns('',
